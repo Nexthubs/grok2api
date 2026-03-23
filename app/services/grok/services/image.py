@@ -556,12 +556,8 @@ class ImageGenerationService:
 
     @staticmethod
     def _select_images(images: List[str], n: int) -> List[str]:
-        if len(images) >= n:
-            return images[:n]
-        selected = images.copy()
-        while len(selected) < n:
-            selected.append("error")
-        return selected
+        if images:
+            return images
 
 
 class ImageWSBaseProcessor(BaseProcessor):
