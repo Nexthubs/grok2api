@@ -246,8 +246,9 @@ class ImageEditService:
                 "Image edit returned no results", details={"error": "empty_result"}
             )
 
-        if len(all_images) >= n:
-            return all_images[:n]
+        if all_images:
+            return all_images
+        return ["error"] * n
 
         selected_images = all_images.copy()
         while len(selected_images) < n:
@@ -361,12 +362,7 @@ class ImageStreamProcessor(BaseProcessor):
                     continue
 
             for index, img_data in enumerate(final_images):
-                if self.n == 1:
-                    if index != self.target_index:
-                        continue
-                    out_index = 0
-                else:
-                    out_index = index
+                out_index = index
 
                 # Wrap in markdown format for chat
                 output = img_data
