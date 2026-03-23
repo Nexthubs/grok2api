@@ -320,7 +320,7 @@ class ImageGenerationService:
         response_format: str,
         enable_nsfw: Optional[bool] = None,
     ) -> ImageGenerationResult:
-        per_call = min(max(1, n), 2)
+        per_call = min(max(1, n), 1)
         calls_needed = max(1, int(math.ceil(n / per_call)))
 
         async def _call_generate(call_target: int) -> List[str]:
@@ -409,7 +409,7 @@ class ImageGenerationService:
             enable_nsfw = bool(get_config("image.nsfw"))
         all_images: List[str] = []
         seen = set()
-        expected_per_call = 6
+        expected_per_call = 1
         calls_needed = max(1, int(math.ceil(n / expected_per_call)))
         calls_needed = min(calls_needed, n)
 
