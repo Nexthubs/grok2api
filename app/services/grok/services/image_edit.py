@@ -199,7 +199,7 @@ class ImageEditService:
         file_attachments: List[str],
         tool_overrides: dict,
     ) -> List[str]:
-        per_call = 2
+        per_call = 1
         calls_needed = max(1, (n + per_call - 1) // per_call)
 
         async def _call_edit():
